@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.cnalanches.app.controller.EstoqueController"
+      prefHeight="500.0" prefWidth="800.0"
+      style="-fx-background-color: #f4f4f4;">
+
+    <fx:define>
+        <ToggleGroup fx:id="grupoVisao" />
+    </fx:define>
+
+    <!-- Menu lateral -->
+    <VBox prefWidth="220.0" minWidth="220.0" spacing="12.0"
+          style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 1 0 0;">
+        <padding>
+            <Insets top="15.0" right="12.0" bottom="15.0" left="12.0" />
+        </padding>
+
+        <!-- Alternar entre ativos e inativos -->
+        <HBox spacing="0.0">
+            <ToggleButton fx:id="btnAtivos" text="Ativos" toggleGroup="$grupoVisao" selected="true"
+                          onAction="#mostrarAtivos" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+            <ToggleButton fx:id="btnInativos" text="Inativos" toggleGroup="$grupoVisao"
+                          onAction="#mostrarInativos" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+        </HBox>
+
+        <Label text="Categorias"
+               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+
+        <ListView fx:id="listaCategorias" VBox.vgrow="ALWAYS"
+                  style="-fx-background-color: transparent; -fx-font-size: 14px;" />
+
+        <Button fx:id="btnAtualizar" text="Atualizar" onAction="#carregarEstoque"
+                maxWidth="Infinity"
+                style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" />
+        <Button text="Voltar" onAction="#voltarParaHome" maxWidth="Infinity"
+                style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" />
+        <Label fx:id="lblStatus" style="-fx-text-fill: #777777;" />
+    </VBox>
+
+    <!-- Cardápio -->
+    <VBox HBox.hgrow="ALWAYS" spacing="10.0">
+        <padding>
+            <Insets top="15.0" right="20.0" bottom="15.0" left="20.0" />
+        </padding>
+
+        <Label fx:id="lblTitulo" text="Cardápio / Estoque"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox fx:id="conteudoMenu" spacing="8.0" />
+        </ScrollPane>
+    </VBox>
+</HBox>

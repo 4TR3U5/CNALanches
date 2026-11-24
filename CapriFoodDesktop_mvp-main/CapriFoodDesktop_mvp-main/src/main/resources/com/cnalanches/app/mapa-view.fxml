@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.cnalanches.app.controller.MapaController"
+      prefHeight="600.0" prefWidth="1000.0" spacing="12.0"
+      style="-fx-background-color: #f4f4f4;">
+
+    <padding>
+        <Insets top="15.0" right="20.0" bottom="15.0" left="20.0" />
+    </padding>
+
+    <HBox spacing="10.0" alignment="CENTER_LEFT">
+        <Button text="Voltar" onAction="#voltarParaHome"
+                style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" />
+        <Label text="Mapa de salão"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+        <HBox HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" spacing="10.0">
+            <Label fx:id="lblStatus" style="-fx-text-fill: #777777;" />
+            <Button fx:id="btnAtualizar" text="Atualizar" onAction="#carregarMesas"
+                    style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" />
+            <Button text="+ Nova mesa" onAction="#novaMesa"
+                    style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" />
+        </HBox>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background-color: transparent; -fx-background: transparent;">
+        <FlowPane fx:id="painelMesas" hgap="15.0" vgap="15.0">
+            <padding>
+                <Insets top="5.0" right="5.0" bottom="5.0" left="5.0" />
+            </padding>
+        </FlowPane>
+    </ScrollPane>
+</VBox>

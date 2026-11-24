@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.cnalanches.app.controller.VendaController"
+      prefHeight="600.0" prefWidth="1000.0"
+      style="-fx-background-color: #f4f4f4;">
+
+    <fx:define>
+        <ToggleGroup fx:id="grupoModo" />
+    </fx:define>
+
+    <!-- Produtos -->
+    <VBox HBox.hgrow="ALWAYS" spacing="10.0">
+        <padding>
+            <Insets top="15.0" right="15.0" bottom="15.0" left="20.0" />
+        </padding>
+
+        <HBox spacing="10.0" alignment="CENTER_LEFT">
+            <Button text="Voltar" onAction="#voltarParaHome"
+                    style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" />
+            
+            <Button fx:id="btnMapa" text="Mapa de salão" onAction="#abrirMapa"
+                style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" />    
+            
+            
+            <Label text="Venda"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+            <HBox spacing="0.0" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
+                <ToggleButton fx:id="btnCaixa" text="Caixa" toggleGroup="$grupoModo" selected="true"
+                              onAction="#modoCaixa" prefWidth="90.0" />
+                <ToggleButton fx:id="btnMesa" text="Mesa" toggleGroup="$grupoModo"
+                              onAction="#modoMesa" prefWidth="90.0" />
+            </HBox>
+        </HBox>
+
+        <TextField fx:id="txtBusca" promptText="Buscar produto..." />
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox fx:id="conteudoProdutos" spacing="8.0" />
+        </ScrollPane>
+    </VBox>
+
+    <!-- Carrinho -->
+    <VBox prefWidth="360.0" minWidth="360.0" spacing="10.0"
+          style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 0 1;">
+        <padding>
+            <Insets top="15.0" right="15.0" bottom="15.0" left="15.0" />
+        </padding>
+
+        <Label fx:id="lblTituloCarrinho" text="Venda no caixa"
+               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+
+        <!-- Só aparece no modo Mesa -->
+        <HBox fx:id="boxMesa" spacing="8.0" alignment="CENTER_LEFT" visible="false" managed="false">
+            <TextField fx:id="txtMesa" promptText="Nº da mesa (somente números)" HBox.hgrow="ALWAYS"
+                       onAction="#abrirMesa" />
+            <Button fx:id="btnAbrirMesa" text="Abrir" onAction="#abrirMesa"
+                    style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;" />
+        </HBox>
+        <Label fx:id="lblMesaAtual" visible="false" managed="false"
+               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #007bff;" />
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox fx:id="conteudoCarrinho" spacing="6.0" />
+        </ScrollPane>
+
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Total" style="-fx-font-size: 18px; -fx-text-fill: #333333;" />
+            <HBox HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
+                <Label fx:id="lblTotal" text="R$ 0,00"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #28a745;" />
+            </HBox>
+        </HBox>
+
+        <ComboBox fx:id="cbPagamento" promptText="Forma de pagamento" maxWidth="Infinity" />
+
+        <!-- Só aparece no pagamento em dinheiro -->
+        <HBox fx:id="boxRecebido" spacing="8.0" alignment="CENTER_LEFT" visible="false" managed="false">
+            <TextField fx:id="txtRecebido" promptText="Valor recebido" HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblTroco" text="Troco: R$ 0,00"
+                   style="-fx-font-weight: bold; -fx-text-fill: #333333;" />
+        </HBox>
+
+
+        <Button fx:id="btnLancar" text="Lançar itens" onAction="#lancarItens" maxWidth="Infinity"
+            visible="false" managed="false"
+            style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 0 8 0;" />
+
+
+        <Button fx:id="btnFinalizar" text="Finalizar venda" onAction="#finalizar" maxWidth="Infinity"
+                style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 10 0 10 0;" />
+        
+        <Button fx:id="btnLimpar" text="Limpar carrinho" onAction="#limpar" maxWidth="Infinity"
+                style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" />
+    </VBox>
+</HBox>
